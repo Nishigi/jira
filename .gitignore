@@ -10,7 +10,8 @@
 
 # production
 /build
-
+/dist
+/yarn.lock
 # misc
 .DS_Store
 .env.local
