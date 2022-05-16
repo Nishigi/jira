@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const isZero = (val: any): boolean => {
+export const isZero = (val: unknown): boolean => {
     return val === 0 ? false : !val;
 };
 
@@ -54,8 +54,8 @@ export const useMount = (callback: () => void) => {
         callback();
     }, []); // eslint-disable-line
 };
-
-export const useDebounce = (value: any, delay?: number) => {
+//后续用泛型来规范
+export const useDebounce = (value: unknown, delay?: number) => {
     const [debounceVal, setDebounceVal] = useState(value);
 
     useEffect(() => {
