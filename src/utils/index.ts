@@ -1,52 +1,61 @@
 import { useEffect, useState } from 'react';
 
-export const isZero = val => {
+export const isZero = (val: any): boolean => {
     return val === 0 ? false : !val;
 };
 
-export const checkUrl = url => {
+export const checkUrl = (url: object) => {
     const result = { ...url };
     Object.keys(result).forEach(key => {
+        // @ts-ignore
         if (isZero(url[key])) {
+            // @ts-ignore
             delete result[key];
         }
     });
     return result;
 };
 
-export const _debounce = (func, delay) => {
+export const _debounce = (func: () => void, delay: number) => {
+    // @ts-ignore
     let timer = null;
+    // @ts-ignore
     return (...params) => {
+        // @ts-ignore
         if (timer) {
+            // @ts-ignore
             clearTimeout(timer);
         }
         timer = setTimeout(() => {
+            // @ts-ignore
             func(...params);
         }, delay);
     };
 };
-export const _throttle = (func, wait) => {
+export const _throttle = (func: () => void, wait: number) => {
+    // @ts-ignore
     let timer = null;
     let flag = false;
-    return (...params) => {
+    return (...params: any) => {
         if (flag) {
             return;
         }
         flag = true;
-        timer = setTimeout(() => {
+        timer = setTimeout(() => {// eslint-disable-line
             flag = false;
+            // @ts-ignore
             func(...params);
         }, wait);
     };
 };
 // Hooks
-export const useMount = callback => {
+export const useMount = (callback: () => void) => {
     useEffect(() => {
         callback();
     }, []); // eslint-disable-line
 };
 
-export const useDebounce = (value, delay) => {
+export const useDebounce = (value: any, delay?: number) => {
     const [debounceVal, setDebounceVal] = useState(value);
 
     useEffect(() => {
