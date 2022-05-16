@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const isZero = val => {
     return val === 0 ? false : !val;
@@ -14,34 +14,44 @@ export const checkUrl = url => {
     return result;
 };
 
-export const useMount = callback => {
-    useEffect(() => {
-        callback();
-    }, []); // eslint-disable-line
-};
-
 export const _debounce = (func, delay) => {
     let timer = null;
-    return () => {
+    return (...params) => {
         if (timer) {
             clearTimeout(timer);
         }
         timer = setTimeout(() => {
-            func();
+            func(...params);
         }, delay);
     };
 };
 export const _throttle = (func, wait) => {
     let timer = null;
     let flag = false;
-    return () => {
+    return (...params) => {
         if (flag) {
             return;
         }
         flag = true;
         timer = setTimeout(() => {
             flag = false;
-            func();
+            func(...params);
         }, wait);
     };
+};
+// Hooks
+export const useMount = callback => {
+    useEffect(() => {
+        callback();
+    }, []); // eslint-disable-line
+};
+
+export const useDebounce = (value, delay) => {
+    const [debounceVal, setDebounceVal] = useState(value);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => setDebounceVal(value), delay);
+        return () => clearTimeout(timeout);
+    }, [value, delay]);
+    return debounceVal;
 };
