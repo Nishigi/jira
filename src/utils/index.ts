@@ -64,3 +64,18 @@ export const useDebounce = <V>(value: V, delay?: number) => {
     }, [value, delay]);
     return debounceVal;
 };
+
+export const useArray = <T>(initArray: T[]) => {
+    const [value, setValue] = useState(initArray)
+    return {
+        value,
+        setValue,
+        removeIndex: (index: number) => {
+            const val = [...value]
+            val.splice(index, 1)
+            setValue(val)
+        },
+        add: (item: T) => setValue([...value, item]),
+        clear: () => setValue([])
+    }
+}
