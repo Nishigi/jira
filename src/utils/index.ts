@@ -55,7 +55,7 @@ export const useMount = (callback: () => void) => {
     }, []); // eslint-disable-line
 };
 //后续用泛型来规范
-export const useDebounce = (value: unknown, delay?: number) => {
+export const useDebounce = <V>(value: V, delay?: number) => {
     const [debounceVal, setDebounceVal] = useState(value);
 
     useEffect(() => {
