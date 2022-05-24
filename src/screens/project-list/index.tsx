@@ -16,7 +16,7 @@ export const ProjectListScreen = () => {
   const client = useHttp()
   useEffect(() => {
     client('projects', { data: checkUrl(debounceParam) }).then(setList);
-  }, [debounceParam]);
+  }, [debounceParam]); // eslint-disable-line
   useMount(() => {
     client('users').then(setUsers);
   });
