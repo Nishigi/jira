@@ -8,8 +8,6 @@ interface Config extends RequestInit {
   data?: object
 }
 export const http = async (endpoint: string, { data, token, headers, ...customConfig }: Config = {}) => {
-  console.log(data);
-
   const config = {
     method: 'GET',
     headers: {
