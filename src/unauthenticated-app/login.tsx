@@ -1,6 +1,7 @@
 import { useAuth } from "context/auth-context"
 import React from "react"
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
+import { LongButton } from "unauthenticated-app";
 
 export const LoginScreens = () => {
   const { login, user } = useAuth()
@@ -20,7 +21,7 @@ export const LoginScreens = () => {
         <Input placeholder="密码" type="password" id={'password'} />
       </Form.Item>
       <Form.Item>
-        <Button htmlType={'submit'} type={"primary"}>登录</Button>
+        <LongButton htmlType={'submit'} type={"primary"}>登录</LongButton>
       </Form.Item>
     </Form >
   )
